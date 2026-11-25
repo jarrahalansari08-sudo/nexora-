@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NEXORA — Essentials in Black, White & Gray</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--fg:#0a0a0a;--muted:#6b6b6b;--line:#e6e6e6;--card:#f4f4f4;--inv-bg:#0a0a0a;--inv-fg:#fff;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a0a0a;--fg:#f5f5f5;--muted:#8f8f8f;--line:#262626;--card:#141414;--inv-bg:#f5f5f5;--inv-fg:#0a0a0a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a0a0a;--fg:#f5f5f5;--muted:#8f8f8f;--line:#262626;--card:#141414;--inv-bg:#f5f5f5;--inv-fg:#0a0a0a;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:'Inter','Noto Sans Arabic',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(20px,5vw,64px);background:var(--bg);border-bottom:1px solid var(--line)}
+.logo{font-weight:600;letter-spacing:.42em;font-size:15px}
+nav{display:flex;gap:clamp(16px,3vw,40px);font-size:12px;letter-spacing:.16em;text-transform:uppercase}
+nav a{color:var(--muted);transition:color .3s}nav a:hover{color:var(--fg)}
+.hero{min-height:88vh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:clamp(24px,6vw,96px);padding:clamp(48px,8vw,120px) clamp(20px,5vw,64px)}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+h1{font-weight:300;font-size:clamp(44px,8vw,112px);line-height:.98;letter-spacing:-.04em;margin:24px 0 28px}
+.hero p{max-width:420px;color:var(--muted);font-size:16px;margin:0 0 40px}
+.btn{display:inline-block;padding:16px 36px;background:var(--inv-bg);color:var(--inv-fg);font-size:11px;letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--inv-bg);transition:background .35s,color .35s}
+.btn:hover{background:transparent;color:var(--fg)}
+.hero-art{aspect-ratio:4/5;background:var(--card);display:flex;align-items:center;justify-content:center;padding:12%;animation:rise 1.4s cubic-bezier(.2,.7,.2,1) both}
+.hero-art svg{width:100%;animation:float 7s ease-in-out infinite}
+@keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes float{50%{transform:translateY(-8px)}}
+section{padding:clamp(64px,10vw,140px) clamp(20px,5vw,64px)}
+.head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-bottom:56px}
+h2{font-weight:300;font-size:clamp(32px,5vw,60px);letter-spacing:-.03em;line-height:1.05;margin:12px 0 0}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{font:inherit;font-size:11px;letter-spacing:.18em;text-transform:uppercase;padding:10px 18px;background:none;color:var(--muted);border:1px solid var(--line);cursor:pointer;transition:all .3s}
+.filters button:hover{color:var(--fg);border-color:var(--fg)}
+.filters button.on{background:var(--inv-bg);color:var(--inv-fg);border-color:var(--inv-bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr));gap:40px 24px}
+.card{opacity:0;transform:translateY(20px);transition:opacity .9s ease,transform .9s ease}
+.card.in{opacity:1;transform:none}
+.card.hide{display:none}
+.img{aspect-ratio:4/5;background:var(--card);display:flex;align-items:center;justify-content:center;padding:14%;position:relative;overflow:hidden}
+.img svg{width:100%;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.card:hover .img svg{transform:scale(1.06)}
+.add{position:absolute;left:0;right:0;bottom:0;padding:15px;text-align:center;background:var(--inv-bg);color:var(--inv-fg);font-size:11px;letter-spacing:.2em;text-transform:uppercase;transform:translateY(101%);transition:transform .45s cubic-bezier(.2,.7,.2,1);border:0;font-family:inherit;cursor:pointer}
+.card:hover .add,.add:focus-visible{transform:none}
+@media (hover:none){.add{transform:none;position:static;margin-top:0}}
+.img{display:grid;place-items:center}.v{grid-area:1/1;width:100%;transition:opacity .7s ease}.v svg{display:block;width:100%}.bk{opacity:0}.card.flipped .fr{opacity:0}.card.flipped .bk{opacity:1}@media (hover:hover){.card:hover .fr{opacity:0}.card:hover .bk{opacity:1}}.flip{position:absolute;top:12px;right:12px;z-index:2;font:inherit;font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:7px 11px;background:var(--bg);color:var(--fg);border:1px solid var(--line);cursor:pointer;opacity:.85}
+.lang{font:inherit;font-size:12px;letter-spacing:.1em;background:none;border:1px solid var(--line);color:var(--fg);padding:8px 14px;cursor:pointer;margin-inline-start:16px;transition:border-color .3s}.lang:hover{border-color:var(--fg)}
+html[dir=rtl] :where(nav a,.eyebrow,.btn,.filters button,.add,.flip,.stats,.news button,footer,.toast,.lang){letter-spacing:0;text-transform:none}
+html[dir=rtl] :where(h1,h2,blockquote,.stats b,.meta,.sub){letter-spacing:0}
+html[dir=rtl] .flip{right:auto;left:12px}html[dir=rtl] h1{line-height:1.25}
+.meta{display:flex;justify-content:space-between;gap:12px;padding-top:16px;font-size:14px}
+.meta span:last-child{color:var(--muted)}
+.sub{font-size:12px;color:var(--muted);letter-spacing:.04em}
+.editorial{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,8vw,120px);align-items:center;border-top:1px solid var(--line)}
+.editorial blockquote{margin:0;font-weight:300;font-size:clamp(28px,4vw,52px);line-height:1.15;letter-spacing:-.03em}
+.editorial p{color:var(--muted);max-width:440px}
+.stats{display:flex;gap:40px;margin-top:40px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.stats b{display:block;font-weight:300;font-size:32px;letter-spacing:-.02em;text-transform:none;color:var(--fg)}
+.news{text-align:center;background:var(--inv-bg);color:var(--inv-fg)}
+.news h2{margin-bottom:32px}
+.news form{display:flex;max-width:460px;margin:0 auto;border-bottom:1px solid var(--inv-fg)}
+.news input{flex:1;background:none;border:0;color:inherit;font:inherit;padding:14px 0;outline:0}
+.news input::placeholder{color:inherit;opacity:.5}
+.news button{background:none;border:0;color:inherit;font:inherit;font-size:11px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:32px clamp(20px,5vw,64px);font-size:12px;color:var(--muted);letter-spacing:.08em}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,40px);opacity:0;background:var(--inv-bg);color:var(--inv-fg);padding:14px 26px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;transition:all .5s;z-index:20;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (max-width:800px){.hero,.editorial{grid-template-columns:1fr}.hero{min-height:auto}nav{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.card{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header><a class="logo" href="#top">NEXORA</a><nav><a href="#shop">Shop</a><a href="#story">Philosophy</a><a href="#join">Journal</a></nav><button class="lang" id="lang" aria-label="Change language">العربية</button></header>
+
+<main id="top">
+<div class="hero">
+  <div>
+    <div class="eyebrow">Collection 01 — Essentials</div>
+    <h1>Quiet<br>by design.</h1>
+    <p>Tees, hoodies and loose gray sweatpants. Three pieces, cut with restraint and made to be worn for years.</p>
+    <a class="btn" href="#shop">Shop the collection</a>
+  </div>
+  <div class="hero-art" id="heroArt"></div>
+</div>
+
+<section id="shop">
+  <div class="head">
+    <div><div class="eyebrow">The Collection</div><h2>Essentials</h2></div>
+    <div class="filters" id="filters">
+      <button class="on" data-f="all">All</button><button data-f="tee">Tees</button><button data-f="hoodie">Hoodies</button><button data-f="pants">Sweatpants</button>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="editorial" id="story">
+  <blockquote>Fewer pieces. Better fabric. A silhouette that lets you disappear into it.</blockquote>
+  <div>
+    <p>NEXORA is built on one idea: a wardrobe in black, white and gray needs no explanation. Heavyweight cotton, relaxed proportions and clean finishing — nothing added, nothing missing.</p>
+    <div class="stats"><div><b>380</b>GSM cotton</div><div><b>03</b>Silhouettes</div><div><b>100%</b>Monochrome</div></div>
+  </div>
+</section>
+
+<section class="news" id="join">
+  <div class="eyebrow" style="opacity:.6">Journal</div>
+  <h2>Join the list</h2>
+  <form id="nl"><input type="email" required placeholder="Email address" aria-label="Email address"><button>Subscribe</button></form>
+</section>
+</main>
+
+<footer><span>© 2026 NEXORA</span><span>Black · White · Gray</span></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const G0={
+tee:(f,s)=>`<svg viewBox="0 0 200 200" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M72 26 L34 42 C28 44 24 48 22 54 L14 86 L46 98 L50 176 C80 181 120 181 150 176 L154 98 L186 86 L178 54 C176 48 172 44 166 42 L128 26 C120 46 80 46 72 26Z" fill="${f}" stroke="${s}" stroke-width="1.5"/><path d="M72 26 C82 56 118 56 128 26" stroke="${s}" stroke-width="1.5"/><path d="M76 27 C86 50 114 50 124 27" stroke="${s}" stroke-width="1" opacity=".45"/><path d="M72 26 C62 52 52 78 46 98 M128 26 C138 52 148 78 154 98" stroke="${s}" stroke-width="1" opacity=".5"/><path d="M50 166 C80 171 120 171 150 166" stroke="${s}" stroke-width="1" opacity=".4"/><path d="M84 84 C80 110 84 135 80 160 M118 90 C124 112 120 138 126 158 M28 76 L38 80 M172 76 L162 80" stroke="${s}" stroke-width="1" opacity=".16"/></svg>`,
+hoodie:(f,s)=>`<svg viewBox="0 0 200 200" fill="none"><path d="M68 28 L26 56 L34 130 L54 128 L54 172 L146 172 L146 128 L166 130 L174 56 L132 28 C128 50 72 50 68 28Z" fill="${f}" stroke="${s}" stroke-width="1.5" stroke-linejoin="round"/><path d="M68 28 C76 62 124 62 132 28" stroke="${s}" stroke-width="1.5"/><path d="M92 60 V90 M108 60 V90 M70 128 H130" stroke="${s}" stroke-width="1.2" stroke-linecap="round"/></svg>`,
+pants:(f,s)=>`<svg viewBox="0 0 200 200" fill="none"><path d="M58 20 H142 L152 182 H108 L100 78 L92 182 H48Z" fill="${f}" stroke="${s}" stroke-width="1.5" stroke-linejoin="round"/><path d="M58 36 H142 M100 36 V78 M48 172 H92 M108 172 H152" stroke="${s}" stroke-width="1.2"/></svg>`
+};
+const P=[
+{t:'tee',n:'Core Tee',c:'White',p:29,f:'#fafafa',s:'#0a0a0a'},
+{t:'tee',n:'Core Tee',c:'Black',p:29,f:'#0a0a0a',s:'#8a8a8a'},
+{t:'tee',n:'Boxy Heavy Tee',c:'Off-white',p:35,f:'#e8e8e6',s:'#0a0a0a'},
+{t:'hoodie',n:'Essential Hoodie',c:'Black',p:59,f:'#0a0a0a',s:'#8a8a8a'},
+{t:'hoodie',n:'Oversized Hoodie',c:'White',p:65,f:'#fafafa',s:'#0a0a0a'},
+{t:'pants',n:'Loose Sweatpant',c:'Light gray',p:49,f:'#c9c9c9',s:'#0a0a0a'},
+{t:'pants',n:'Loose Sweatpant',c:'Heather gray',p:49,f:'#8e8e8e',s:'#0a0a0a'},
+{t:'pants',n:'Relaxed Sweatpant',c:'Charcoal gray',p:55,f:'#4a4a4a',s:'#d0d0d0'}
+];
+let U=0;const ink=f=>parseInt(f.slice(1,3),16)<140?'#f2f2f2':'#0a0a0a';
+const T=(x,y,t,sz,ls,k,w=600,o=.92,r)=>`<text x="${x}" y="${y}" font-size="${sz}" letter-spacing="${ls}" font-weight="${w}" text-anchor="middle" fill="${k}" opacity="${o}" font-family="Inter,Arial,sans-serif"${r?` transform="rotate(${r} ${x} ${y})"`:''}>${t}</text>`;
+const fd=(p,o=.22)=>`<path d="${p}" stroke="#000" stroke-opacity="${o}" stroke-width="6" filter="url(#§b)"/>`;
+const fh=(p,o=.12)=>`<path d="${p}" stroke="#fff" stroke-opacity="${o}" stroke-width="9" filter="url(#§b)"/>`;
+function wrap(d,f,s,ex,logo){const i='g'+(U++);return `<svg viewBox="0 0 200 210" fill="none" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="${i}a" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".3"/><stop offset=".3" stop-color="#000" stop-opacity="0"/><stop offset=".62" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#000" stop-opacity=".32"/></linearGradient><linearGradient id="${i}v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".06"/><stop offset="1" stop-color="#000" stop-opacity=".14"/></linearGradient><filter id="${i}n"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.3 0 0 0 -.4"/></filter><filter id="${i}b" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3"/></filter><clipPath id="${i}c"><path d="${d}"/></clipPath></defs><ellipse cx="100" cy="206" rx="64" ry="5" fill="#000" opacity=".14" filter="url(#${i}b)"/><g clip-path="url(#${i}c)"><rect width="200" height="210" fill="${f}"/><rect width="200" height="210" fill="url(#${i}a)"/><rect width="200" height="210" fill="url(#${i}v)"/><rect width="200" height="210" filter="url(#${i}n)" opacity=".22"/>${ex.replace(/§/g,i)}</g><path d="${d}" stroke="#000" stroke-opacity=".35" stroke-width=".8"/>${logo}</svg>`}
+const G={
+tee:(f,s,b)=>{const k=ink(f),d=`M72 26 L34 42 C28 44 24 48 22 54 L14 86 L46 98 L50 198 C80 203 120 203 150 198 L154 98 L186 86 L178 54 C176 48 172 44 166 42 L128 26 C${b?'118 34 82 34':'120 46 80 46'} 72 26Z`;
+const ex=`<path d="${b?'M74 27 C84 33 116 33 126 27':'M74 27 C84 48 116 48 126 27'}" stroke="#000" stroke-opacity=".28" stroke-width="5"/>${fd('M84 84 C80 124 86 160 80 194')+fd('M124 92 C130 130 124 168 130 196')+fd('M24 62 L44 92',.18)+fd('M176 62 L156 92',.18)+fh('M102 70 C100 120 104 160 102 192')}<path d="M50 190 C80 195 120 195 150 190" stroke="#000" stroke-opacity=".3" stroke-width=".8"/><path d="M72 26 C62 52 52 78 46 98 M128 26 C138 52 148 78 154 98" stroke="#000" stroke-opacity=".25" stroke-width=".8"/>`;
+const lg=b?T(100,64,'NEXORA',19,4,k)+T(100,76,'ESSENTIALS  —  01',4.2,2.6,k,500,.7):T(130,64,'NEXORA',5.6,1.6,k);
+return wrap(d,f,s,ex,lg)},
+hoodie:(f,s,b)=>{const k=ink(f),d='M70 24 L36 40 C28 44 24 52 22 62 L12 190 L38 194 L52 108 L52 198 C82 204 118 204 148 198 L148 108 L162 194 L188 190 L178 62 C176 52 172 44 164 40 L130 24 C126 40 74 40 70 24Z M70 26 C62 2 138 2 130 26Z';
+const ex=b?`<path d="M74 24 C84 54 116 54 126 24" stroke="#000" stroke-opacity=".3" stroke-width=".9"/>${fd('M100 54 L100 196',.12)+fd('M84 90 C80 130 86 170 82 196')+fd('M120 96 C126 134 120 172 126 196')+fd('M30 70 C26 110 24 150 18 186',.2)+fd('M170 70 C174 110 176 150 182 186',.2)+fh('M104 80 C102 130 106 170 104 196')}`:`<path d="M76 22 C82 50 118 50 124 22 C118 12 82 12 76 22Z" fill="#000" fill-opacity=".42"/><path d="M76 22 C82 50 118 50 124 22" stroke="#000" stroke-opacity=".4" stroke-width="2"/><path d="M93 46 L92 82 M107 46 L108 82" stroke="${k}" stroke-opacity=".85" stroke-width="1.6"/><path d="M60 140 L140 140 L148 186 L52 186Z" stroke="#000" stroke-opacity=".3" stroke-width=".8"/>${fd('M64 140 L56 186',.2)+fd('M136 140 L144 186',.2)+fd('M84 86 C80 106 86 124 82 130')+fd('M24 70 C28 110 26 150 20 186',.2)+fd('M176 70 C172 110 174 150 180 186',.2)+fh('M104 70 C106 100 102 126 104 130')}`;
+const cuff=`<path d="M52 194 C82 199 118 199 148 194 M13 184 L39 188 M187 184 L161 188" stroke="#000" stroke-opacity=".3" stroke-width="1.2"/>`;
+const lg=b?T(100,86,'NEXORA',17,4,k)+T(100,98,'ESSENTIALS  —  01',4,2.6,k,500,.7):T(132,76,'NEXORA',5.4,1.6,k);
+return wrap(d,f,s,ex+cuff,lg)},
+pants:(f,s,b)=>{const k=ink(f),d='M54 16 H146 L162 192 H106 L100 92 L94 192 H38Z';
+const ex=`<path d="M54 16 H146 L147 34 H53Z" fill="#000" fill-opacity=".1"/><path d="M53 34 H147" stroke="#000" stroke-opacity=".3" stroke-width=".9"/><path d="M100 34 V92" stroke="#000" stroke-opacity=".28" stroke-width=".8"/>${b?'<path d="M64 46 H92 L90 76 H66Z M108 46 H136 L134 76 H110Z" stroke="#000" stroke-opacity=".3" stroke-width=".8"/>':'<path d="M56 40 C70 52 74 70 72 86 M144 40 C130 52 126 70 128 86" stroke="#000" stroke-opacity=".3" stroke-width=".8"/><path d="M93 34 L92 62 M107 34 L108 62" stroke="'+k+'" stroke-opacity=".8" stroke-width="1.5"/>'}${fd('M70 96 C64 130 70 160 58 188')+fd('M130 96 C136 130 130 160 142 188')+fd('M88 110 C86 140 90 166 86 190',.16)+fh('M76 100 C74 140 78 168 70 188')}<path d="M40 184 H94 M106 184 H160" stroke="#000" stroke-opacity=".25" stroke-width=".8"/>`;
+const lg=b?T(122,63,'NEXORA',4.4,1.2,k,600,.85):T(74,54,'NEXORA',5,1.4,k);
+return wrap(d,f,s,ex,lg)}
+};
+const L={tee:'Tee',hoodie:'Hoodie',pants:'Sweatpants'};
+const grid=document.getElementById('grid');
+grid.innerHTML=P.map(x=>`<article class="card" data-t="${x.t}"><div class="img"><span class="v fr">${G[x.t](x.f,x.s,0)}</span><span class="v bk">${G[x.t](x.f,x.s,1)}</span><button class="flip" aria-label="Flip front and back">Front / Back</button><button class="add" data-n="${x.n}">Add to bag</button></div><div class="meta"><span>${x.n}</span><span>$${x.p}</span></div><div class="sub"><span>${x.c}</span> · <span>${L[x.t]}</span></div></article>`).join('');
+document.getElementById('heroArt').innerHTML=G.hoodie('#0a0a0a','#8a8a8a').replace('<svg','<svg style="filter:drop-shadow(0 20px 30px rgba(0,0,0,.18))"');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
+const cards=[...grid.children];cards.forEach((c,i)=>{c.style.transitionDelay=(i%4)*90+'ms';io.observe(c)});
+document.getElementById('filters').onclick=e=>{const b=e.target.closest('button');if(!b)return;
+ document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));
+ cards.forEach(c=>{c.classList.toggle('hide',b.dataset.f!=='all'&&c.dataset.t!==b.dataset.f);if(!c.classList.contains('hide'))c.classList.add('in')})};
+const AR={'Shop':'تسوّق','Philosophy':'فلسفتنا','Journal':'المجلة','Collection 01 — Essentials':'المجموعة 01 — الأساسيات','Quiet':'أناقة هادئة','by design.':'بتصميم مدروس.','Tees, hoodies and loose gray sweatpants. Three pieces, cut with restraint and made to be worn for years.':'تيشيرتات وهوديات وبناطيل رياضية رمادية واسعة. ثلاث قطع بقصّات بسيطة صُنعت لتدوم لسنوات.','Shop the collection':'تسوّق المجموعة','The Collection':'المجموعة','Essentials':'الأساسيات','All':'الكل','Tees':'تيشيرتات','Hoodies':'هوديات','Sweatpants':'بناطيل رياضية','Fewer pieces. Better fabric. A silhouette that lets you disappear into it.':'قطع أقل. قماش أفضل. قصّة تمنحك راحة تامة.','NEXORA is built on one idea: a wardrobe in black, white and gray needs no explanation. Heavyweight cotton, relaxed proportions and clean finishing — nothing added, nothing missing.':'قامت نكسورا على فكرة واحدة: خزانة بالأسود والأبيض والرمادي لا تحتاج إلى شرح. قطن ثقيل، قصّات مريحة وتشطيب نظيف — لا زيادة ولا نقصان.','GSM cotton':'غرام/م² قطن','Silhouettes':'قصّات','Monochrome':'أحادي اللون','Join the list':'انضم إلى القائمة','Subscribe':'اشترك','Email address':'البريد الإلكتروني','Black · White · Gray':'أسود · أبيض · رمادي','Core Tee':'تيشيرت كور','Boxy Heavy Tee':'تيشيرت بوكسي ثقيل','Essential Hoodie':'هودي إسنشال','Oversized Hoodie':'هودي واسع','Loose Sweatpant':'بنطال رياضي واسع','Relaxed Sweatpant':'بنطال رياضي مريح','White':'أبيض','Black':'أسود','Off-white':'أبيض عاجي','Light gray':'رمادي فاتح','Heather gray':'رمادي مموّه','Charcoal gray':'رمادي فحمي','Tee':'تيشيرت','Hoodie':'هودي','Add to bag':'أضف إلى الحقيبة','Front / Back':'أمام / خلف','Thank you — you’re on the list':'شكرًا — أنت الآن في القائمة'};
+let lang='en';const orig=new WeakMap();
+function trT(m){if(lang!=='ar')return m;if(AR[m])return AR[m];if(m.endsWith(' added to bag')){const n=m.slice(0,-13);return (AR[n]||n)+' — أُضيف إلى الحقيبة'}return m}
+function setLang(l){lang=l;const r=document.documentElement;r.dir=l==='ar'?'rtl':'ltr';r.lang=l;const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){if(n.parentNode.nodeName==='SCRIPT')continue;if(!orig.has(n)){const k=n.nodeValue.trim();if(!AR[k])continue;orig.set(n,n.nodeValue)}const o=orig.get(n),k=o.trim();n.nodeValue=l==='ar'?o.replace(k,AR[k]):o}document.querySelector('#nl input').placeholder=l==='ar'?AR['Email address']:'Email address';document.getElementById('lang').textContent=l==='ar'?'English':'العربية'}
+document.getElementById('lang').onclick=()=>setLang(lang==='ar'?'en':'ar');
+const toast=document.getElementById('toast');let tm;
+function say(m){m=trT(m);toast.textContent=m;toast.classList.add('show');clearTimeout(tm);tm=setTimeout(()=>toast.classList.remove('show'),2200)}
+grid.onclick=e=>{const f=e.target.closest('.flip');if(f){f.closest('.card').classList.toggle('flipped');return}const b=e.target.closest('.add');if(b)say(b.dataset.n+' added to bag')};
+document.getElementById('nl').onsubmit=e=>{e.preventDefault();e.target.reset();say('Thank you — you’re on the list')};
+</script>
+</body>
+</html>
